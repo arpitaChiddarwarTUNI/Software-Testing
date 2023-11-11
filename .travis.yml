@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "14.17.3"  # Specify your desired Node.js version
+
+script:
+  - npm test
+
+after_success:
+  - npm run coverage
+  - npx nyc report --reporter=text-lcov > coverage/lcov.info
+  - npx coveralls
