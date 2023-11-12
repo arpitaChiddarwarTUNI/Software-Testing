@@ -8,6 +8,14 @@
     "test": "nyc --reporter=html --reporter=text ./node_modules/.bin/mocha",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
+  "nyc": {
+    "all": true,
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "report-dir": "coverage"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {},
