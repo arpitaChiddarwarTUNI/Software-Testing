@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/arpitaChiddarwarTUNI/Software-Testing/badge.svg)](https://coveralls.io/github/arpitaChiddarwarTUNI/Software-Testing)
 # Student template
 
 ## Purpose of this repository
