@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import reduce from '../src/reduce';
+import reduce from '../src/reduce.js';
 
 // Test Case ID TC-RU-22
 test('reduce should correctly reduce an array of numbers', () => {
