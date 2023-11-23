@@ -46,4 +46,20 @@ describe('Test at.js', function() {
         const result = at(object, ['a[0].b.c', 'a[4]']);
         const expectedResult = [3, undefined];
 
-        chai.expect(resu
+        chai.expect(result).to.eql(expectedResult);
+    });
+
+    // Additional Test Case ID: TC-RU-31
+    it('Error case: should handle a non-existent path as an argument', () => {
+      const items = {
+        fruits: [{ name: 'Apple' }, { name: 'Banana' }],
+        bakery: [{ name: 'Bread' }, { name: 'Cake' }],
+      };
+      const result = at(items, 'fruits[2].name');
+      const expectedResult = [undefined];
+
+      chai.expect(result).to.deep.equal(expectedResult);
+    });
+
+  });
+});
