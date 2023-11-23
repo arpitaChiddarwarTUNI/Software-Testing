@@ -1,63 +1,30 @@
-import { expect } from 'chai';
+import chai from 'chai';
 import reduce from '../src/reduce.js';
 
-// Test Case ID TC-RU-22
-describe('reduce', function() {
-  it('should correctly reduce an array of numbers', function() {
-    // Test Setup
-    const numbers = [1, 2, 3, 4];
+describe('test reduce.js', function() {
 
-    // Test Execution
-    const result = reduce(numbers, (accumulator, value) => accumulator + value, 0);
+  const similarObjects = [{"name": "apple"}, {"name": "banana"}, {"name": "orange"}];
 
-    // Expected Result
-    expect(result).to.equal(10);
-  });
-});
+  describe('Testing normal behaviour', function() {
 
-// Test Case ID TC-RU-23
-describe('reduce', function() {
-  it('should create a dictionary by category for an array of food products', function() {
-    // Test Setup
-    const products = [
-      { name: 'Apple', category: 'Fruits' },
-      { name: 'Banana', category: 'Fruits' },
-      { name: 'Carrot', category: 'Vegetables' },
-      { name: 'Bread', category: 'Bakery' },
-    ];
+    it('Should count objects in an Array', function() {
+      const expectedResult = similarObjects.length;
 
-    // Test Execution
-    const result = reduce(
-      products,
-      (result, product) => {
-        if (!result[product.category]) {
-          result[product.category] = [];
-        }
-        result[product.category].push(product.name);
-        return result;
-      },
-      {}
-    );
+      const result = reduce(similarObjects, (sum, fruit) => sum + 1, 0);
 
-    // Expected Result
-    expect(result).to.deep.equal({
-      Fruits: ['Apple', 'Banana'],
-      Vegetables: ['Carrot'],
-      Bakery: ['Bread'],
+      chai.expect(result).to.equal(expectedResult);
     });
-  });
-});
 
-// Test Case ID TC-RU-23
-describe('reduce', function() {
-  it('should handle non-array input by returning an empty array', function() {
-    // Test Setup
-    const array = [];
+    it('Should collect values by key', function() {
+      const expectedResult = { 'dairy': ['milk', 'cheese', 'butter'], 'vegetable': ['tomato'], 'bakery': ['crossiant'] };
 
-    // Test Execution
-    const result = reduce(array, () => true);
+      const result = reduce({ 'milk': 'dairy', 'tomato': 'vegetable', 'crossiant': 'bakery', 'cheese': 'dairy', 'butter': 'dairy' }, (result, value, key) => {
+        (result[value] || (result[value] = [])).push(key)
+        return result
+      }, {})
 
-    // Expected Result
-    expect(result).to.deep.equal([]);
+      chai.expect(result).to.deep.equal(expectedResult);
+    });
+
   });
 });
