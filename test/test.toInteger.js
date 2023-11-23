@@ -18,5 +18,26 @@ describe('toInteger', () => {
     expect(toInteger('3.2')).to.equal(3);
   });
 
+  // Additional Test Case ID: TC-RU-25
+  it('should handle a valid string price without leading and trailing whitespace', () => {
+    const priceString = '25.99';
+    const result = toInteger(priceString);
+    expect(result).to.equal(25);
+  });
+
+  // Additional Test Case ID: TC-RU-26
+  it('should handle a valid string price with leading and trailing whitespace', () => {
+    const priceString = ' 25.99 ';
+    const result = toInteger(priceString);
+    expect(result).to.equal(25);
+  });
+
+  // Additional Test Case ID: TC-RU-27
+  it('should handle an invalid string price', () => {
+    const priceString = 'Invalid';
+    const result = toInteger(priceString);
+    expect(result).to.be.NaN;
+  });
+
   // Add more test cases as needed
 });
