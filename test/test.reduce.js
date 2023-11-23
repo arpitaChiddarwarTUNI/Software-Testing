@@ -27,45 +27,46 @@ describe('test reduce.js', function() {
     });
 
   });
-});
-describe('reduce.js - Unit Tests', () => {
-  // Test Case ID: TC-RU-22
-  it('should reduce an array of numbers', () => {
-    const numbers = [1, 2, 3, 4];
-    const result = reduce(numbers, (accumulator, value) => accumulator + value, 0);
-    expect(result).to.deep.equal([10]);
-  });
 
-  // Test Case ID: TC-RU-23
-  it('should reduce an array of food products to create a dictionary by category', () => {
-    const products = [
-      { name: 'Apple', category: 'Fruits' },
-      { name: 'Banana', category: 'Fruits' },
-      { name: 'Carrot', category: 'Vegetables' },
-      { name: 'Bread', category: 'Bakery' },
-    ];
+  describe('Unit Tests for reduce.js', () => {
+    // Test Case ID: TC-RU-22
+    it('should reduce an array of numbers', () => {
+      const numbers = [1, 2, 3, 4];
+      const result = reduce(numbers, (accumulator, value) => accumulator + value, 0);
+      chai.expect(result).to.deep.equal([10]);
+    });
 
-    const result = reduce(products, (result, product) => {
-      if (!result[product.category]) {
-        result[product.category] = [];
-      }
-      result[product.category].push(product.name);
-      return result;
-    }, {});
+    // Test Case ID: TC-RU-23
+    it('should reduce an array of food products to create a dictionary by category', () => {
+      const products = [
+        { name: 'Apple', category: 'Fruits' },
+        { name: 'Banana', category: 'Fruits' },
+        { name: 'Carrot', category: 'Vegetables' },
+        { name: 'Bread', category: 'Bakery' },
+      ];
 
-    const expected = {
-      Fruits: ['Apple', 'Banana'],
-      Vegetables: ['Carrot'],
-      Bakery: ['Bread'],
-    };
+      const result = reduce(products, (result, product) => {
+        if (!result[product.category]) {
+          result[product.category] = [];
+        }
+        result[product.category].push(product.name);
+        return result;
+      }, {});
 
-    expect(result).to.deep.equal(expected);
-  });
+      const expected = {
+        Fruits: ['Apple', 'Banana'],
+        Vegetables: ['Carrot'],
+        Bakery: ['Bread'],
+      };
 
-  // Test Case ID: TC-RU-24
-  it('should handle non-array input by returning an empty array', () => {
-    const array = [];
-    const result = reduce(array, () => true);
-    expect(result).to.deep.equal([]);
+      chai.expect(result).to.deep.equal(expected);
+    });
+
+    // Test Case ID: TC-RU-24
+    it('should handle non-array input by returning an empty array', () => {
+      const array = [];
+      const result = reduce(array, () => true);
+      chai.expect(result).to.deep.equal([]);
+    });
   });
 });
